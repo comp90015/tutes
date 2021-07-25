@@ -1,4 +1,4 @@
-### COMP90015 Challenge 3
+# COMP90015 Challenge 3
 
 > Implement the specified subset of the Redis Serialization Protocol (RESP), then using a multithreaded blocking tcp server - add the GET SET DEL commands
 
