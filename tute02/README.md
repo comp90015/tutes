@@ -1,4 +1,4 @@
-### Challenge 2
+# COMP90015 Challenge 2
 
 > Implement a thread-per-connection blocking server, that accepts client TCP connections on port 6379 and maintains a chat room - broadcasting messages it receives to all other connected clients.
 
