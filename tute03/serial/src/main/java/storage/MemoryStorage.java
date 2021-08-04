@@ -34,8 +34,8 @@ public class MemoryStorage implements KV{
   @Override
   public byte[] get(byte[] key) {
     byte[] value;
+    storeLock.readLock().lock();
     try {
-      storeLock.readLock().lock();
       value = store.get(ByteBuffer.wrap(key));
     } finally {
       storeLock.readLock().unlock();
@@ -45,8 +45,8 @@ public class MemoryStorage implements KV{
 
   @Override
   public void set(byte[] key, byte[] value) {
+    storeLock.writeLock().lock();
     try {
-      storeLock.writeLock().lock();
       store.put(ByteBuffer.wrap(key), value);
     } finally {
       storeLock.writeLock().unlock();
@@ -56,8 +56,8 @@ public class MemoryStorage implements KV{
   @Override
   public int del(byte[] key) {
     byte[] removed;
+    storeLock.writeLock().lock();
     try {
-      storeLock.writeLock().lock();
       removed = store.remove(ByteBuffer.wrap(key));
     } finally {
       storeLock.writeLock().unlock();
