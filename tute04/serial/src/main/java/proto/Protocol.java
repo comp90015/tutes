@@ -45,8 +45,9 @@ public final class Protocol {
   private Protocol() {
   }
 
+  //
   public static byte[] readCrLfString(final BufferedInputStream is) throws IOException {
-    // TODO implement me :)
+
     return EMPTY_BYTES;
   }
 
@@ -79,7 +80,6 @@ public final class Protocol {
 
   public static void writeCrLfString(final BufferedOutputStream os, byte[] data)
       throws IOException {
-    // TODO implement me :)
     writeCrLf(os);
   }
 
