@@ -1,0 +1,5 @@
+rootProject.name = 'comp90015a1'
+include 'client'
+include 'base'
+include 'server'
+

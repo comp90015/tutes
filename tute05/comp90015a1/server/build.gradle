@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation project(':base')
+}
+
+version '0.0.1'
+sourceCompatibility = 11.1
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClass = 'com.kvoli.Server'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task uberJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'com.kvoli.Server'
+    }
+    archiveClassifier = 'uber'
+
+    from sourceSets.main.output
+
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    }
+}
+
