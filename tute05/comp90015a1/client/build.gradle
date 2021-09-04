@@ -1,11 +1,12 @@
+import java.nio.file.Paths
+
 plugins {
     id 'java'
     id 'application'
+    id "com.github.johnrengelman.shadow" version "7.0.0"
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     implementation project(':base')
 }
 
@@ -24,17 +25,9 @@ test {
     useJUnitPlatform()
 }
 
-task uberJar(type: Jar) {
-    manifest {
-        attributes 'Main-Class': 'com.kvoli.Client'
-    }
-    archiveClassifier = 'uber'
-
-    from sourceSets.main.output
-
-    dependsOn configurations.runtimeClasspath
-    from {
-        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
-    }
+shadowJar {
+    archiveBaseName.set('chatclient')
+    archiveClassifier.set('')
+    archiveVersion.set('')
+    destinationDirectory.set(Paths.get(System.getProperty("user.dir")).toAbsolutePath().normalize().toFile())
 }
-

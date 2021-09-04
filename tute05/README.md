@@ -2,6 +2,21 @@
 
 This week we will take a detour to focus on project 1.
 
+## RUNNING
+
+To build the jar files from within Intellij see below. 
+
+![](https://i.imgur.com/MxTCwz3.png)
+![](https://i.imgur.com/xx2cb55.png)
+![](https://i.imgur.com/WE8v3kq.png)
+
+From CLI
+
+```bash
+./gradlew shadowJar
+```
+
+You can also just run the source code as you would normally, by running each main function!
 
 ### multi-jar builds
 
