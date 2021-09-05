@@ -19,7 +19,7 @@ public class ServerWorker implements Worker {
 
       ServerWorker serverWorker = new ServerWorker();
 
-      Worker stub = (Worker) UnicastRemoteObject.exportObject(serverWorker, 0);
+      ServerWorker stub = (ServerWorker) UnicastRemoteObject.exportObject(serverWorker, 0);
 
       registry.rebind("Worker", stub);
 
@@ -31,7 +31,7 @@ public class ServerWorker implements Worker {
 
   @Override
   public <T> T work(Task<T> t) throws RemoteException {
-    System.out.println("New task!");
+    System.out.println("New task! " + t.hashCode());
     return t.execute();
   }
 }
