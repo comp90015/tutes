@@ -7,9 +7,9 @@ In this challenge we will again split it into an extension and core part.
 
 ### Context
 
-So far we have been working with blocking IO. Where sockets had input and output streams. On these streams, we would call `is.read()`, which would block until there was something available to be read. This meant that the thread currently executing this code would be stuck on this line, until something was available to be read. We got around this limitation by introducing multiple threads, one per connection.
+So far we have been working with blocking IO. Where sockets had input and output streams. On these streams, we would call `is.read()` (or `os.write()`, however that didn't really block for long) which would block until there was something available to be read. This meant that the thread currently executing this code would be stuck on this line, until something was available to be read. We got around this limitation by introducing multiple threads, one per connection.
 
-What we will be looking at now, is how we can use only a single thread for listening, accepting, writing and reading for connections N (N >= 0) connections. The way we can achieve this is with asynchronous IO!
+What we will be looking at now, is how we can use only a single thread for listening, accepting, writing and reading for N (`N >= 0`) connections. The way we can achieve this is with asynchronous IO!
 
 Java has supported async IO, since Java 1.4. Where we have previously been using the `io` package, we will now use the `nio` package, (new input output).
 
